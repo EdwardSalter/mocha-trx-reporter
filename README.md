@@ -36,6 +36,15 @@ or you can set `MOCHA_REPORTER_FILE` environment var with the desired filename
 - **warnExcludedPending** (boolean)  
   When combined with *excludePending*, writes a warning to stderr with the number of
   tests that have been excluded because they had the state `Pending`, if the number is more than 0.
+- **attachmentsFolderName** (string)  
+  If set, any file found within the specified folder that matches the following naming convention will be attached to 
+  the test. The folder structure must be as follows:
+  ```
+  -> attachmentsFolderName  
+      -> In    (this is important and cannot be removed)  
+          -> executionId_Or_RelativeResultsDirectoryName  
+              * file.png  
+  ```
 
 #### Multiple options
 

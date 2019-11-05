@@ -187,5 +187,35 @@ describe('Mocha with mocha-trx-reporter', function () {
                 });
             });
         });
+
+        context('attachmentsFolderName is set', function () {
+            let mocha;
+
+            beforeEach(function () {
+                mocha = new Mocha({
+                    reporter: trxReporter,
+                    reporterOptions: {
+                        attachmentsFolderName: 'sampleTest/attachments',
+                    },
+                });
+                const suite = new Mocha.Suite('TRX suite', 'root');
+                suite.addTest(new Mocha.Test('adds attachments to tests'));
+                mocha.suite = suite;
+            });
+
+            describe('run', function () {
+                it('should create correct mocha test result', (done) => {
+                    const runner = mocha.run();
+                    runner.on('end', () => {
+                        runner.failures.should.be.exactly(0);
+                        runner.should.have.property('testResults');
+                        runner.testResults.should.have.property('tests');
+                        runner.testResults.tests.should.be.an.instanceOf(Array);
+                        runner.testResults.tests.should.have.a.lengthOf(1);
+                        done();
+                    });
+                });
+            });
+        })
     });
 });

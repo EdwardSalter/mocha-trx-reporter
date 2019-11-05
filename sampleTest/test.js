@@ -35,3 +35,7 @@ describe('On sample test', function () {
         it('test should fail', function () {});
     });
 });
+
+describe('On sample test', function () {
+    it('should include attachments', function () {});
+});
